@@ -1,65 +1,131 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KI – warum jetzt?</title>
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background:#f4f4f4;
-    margin:0;
-    padding:0;
-    line-height:1.6;
-}
-
-.container {
-    max-width:900px;
-    margin:auto;
-    background:white;
-    padding:40px;
-}
-
-h1 {
-    text-align:center;
-    font-size:40px;
-}
-
-.date {
-    text-align:center;
-    color:#777;
-    margin-bottom:30px;
-}
-
-.video {
-    display:flex;
-    justify-content:center;
-    margin-bottom:40px;
-}
-
-p {
-    font-size:18px;
-    margin-bottom:20px;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Künstliche Intelligenz – Methoden und Anwendungen</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-- Kopfbereich / Header -->
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo">
+                <!-- Optional: eigenes Logo als Bild -->
+                <!-- <img src="assets/img/logo.png" alt="Logo KI Modul"> -->
+                <span class="logo-text">KI – Methoden &amp; Anwendungen</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Start</a></li>
+                    <li><a href="ki-warum-jetzt.html">KI – warum jetzt?</a></li>
+                    <li><a href="big-data.html">Big Data</a></li>
+                    <!-- Hier weitere Unterseiten/Themen ergänzen -->
+                    <!-- <li><a href="neuronale-netze.html">Neuronale Netze</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div class="container">
+    <!-- Hero-Bereich / Intro -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Künstliche Intelligenz – Methoden und Anwendungen</h1>
+                <p>
+                    Diese Website begleitet die Vorlesung und sammelt strukturiert alle Inhalte 
+                    in Form von Kapiteln, Beispielen, Bildern und Videos.
+                </p>
+                <a href="#topics" class="btn-primary">Zu den Themen</a>
+            </div>
+            <div class="hero-side">
+                <!-- Hier könnt ihr später ein passendes Bild einfügen -->
+                <!-- <img src="assets/img/hero-ki.jpg" alt="Symbolbild Künstliche Intelligenz"> -->
+                <div class="hero-placeholder">
+                    <span>Platzhalter für Bild / Grafik</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h1>KI – warum jetzt?</h1>
-<div class="date">09.03.26</div>
+    <!-- Themen-Übersicht -->
+    <main class="container main-content">
+        <section id="topics">
+            <h2>Themenübersicht der Vorlesung</h2>
+            <p>
+                Die folgenden Kapitel werden im Laufe des Semesters nach und nach ergänzt und 
+                mit Inhalten aus den Vorlesungen gefüllt.
+            </p>
 
-<div class="video">
-<iframe src="https://app.colossyan.com/embed/584c450d-f1b5-465d-a987-ef7a09af7aec"
-width="560"
-height="315"
-frameborder="0"
-allow="autoplay; fullscreen; picture-in-picture"
-allowfullscreen>
-</iframe>
+            <div class="card-grid">
+                <!-- Karte: KI – warum jetzt? -->
+                <article class="card">
+                    <h3>KI – warum jetzt?</h3>
+                    <p>
+                        Motivation, technologische Voraussetzungen und gesellschaftliche 
+                        Rahmenbedingungen für den aktuellen KI‑Boom.
+                    </p>
+                    <a href="ki-warum-jetzt.html" class="card-link">Kapitel öffnen</a>
+                </article>
 
+                <!-- Karte: Big Data -->
+                <article class="card">
+                    <h3>Big Data</h3>
+                    <p>
+                        Datenmengen, -geschwindigkeit und -vielfalt als Grundlage moderner 
+                        KI‑Methoden.
+                    </p>
+                    <a href="big-data.html" class="card-link">Kapitel öffnen</a>
+                </article>
+
+                <!-- Beispiel für weitere Karten / Themen -->
+                <!--
+                <article class="card">
+                    <h3>Überwachtes Lernen</h3>
+                    <p>
+                        Grundprinzipien, Trainingsdaten, Verlustfunktionen und typische Anwendungen.
+                    </p>
+                    <a href="ueberwachtes-lernen.html" class="card-link">Kapitel öffnen</a>
+                </article>
+                -->
+            </div>
+        </section>
+
+        <!-- Bereich für organisatorische Infos zur Vorlesung -->
+        <section id="course-info">
+            <h2>Informationen zur Veranstaltung</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Modultitel</h3>
+                    <p>Künstliche Intelligenz – Methoden und Anwendungen</p>
+
+                    <h3>Ziel der Website</h3>
+                    <p>
+                        Zusammenführung aller Vorlesungsinhalte in einer einheitlich 
+                        strukturierten und professionell gestalteten Web‑Darstellung.
+                    </p>
+                </div>
+                <div>
+                    <h3>Typische Inhalte</h3>
+                    <ul>
+                        <li>Kurztexte und Zusammenfassungen der Vorlesung</li>
+                        <li>Grafiken, Schaubilder und Abbildungen</li>
+                        <li>Videos (eingebettete Vorlesungs‑ oder Erklärvideos)</li>
+                        <li>Links zu Papers, Demos oder GitHub‑Repos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fußbereich / Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 – Modul &bdquo;Künstliche Intelligenz – Methoden und Anwendungen&ldquo;</p>
+            <p class="footer-meta">
+                Erstellt im Rahmen einer Universitätsveranstaltung. Inhalte werden laufend ergänzt.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
