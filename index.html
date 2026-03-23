@@ -773,185 +773,177 @@
 
   <!-- Inline JavaScript -->
     <script>
-  // Accordion Funktion
-document.querySelectorAll(".chapter-toggle").forEach((toggle) => {
-  toggle.addEventListener("click", () => {
-    const chapter = toggle.parentElement;
-    chapter.classList.toggle("open");
+document.addEventListener("DOMContentLoaded", () => {
+  // --- ACCORDION FÜR KAPITEL ---
+  document.querySelectorAll(".chapter-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const chapter = toggle.parentElement;
+      chapter.classList.toggle("open");
+    });
   });
-});
-    // Simple Wissensbasis – hier kannst du wörtlich Inhalte deiner Abschnitte eintragen
-    const knowledgeBase = [
-      {
-        keywords: ["ki", "warum jetzt", "motivation", "boom"],
-        answer:
-          "Im Kapitel „KI – warum jetzt?“ geht es darum, warum KI gerade heute so präsent ist: mehr Rechenleistung, große Datenmengen und bessere Algorithmen wie Deep Learning."
-      },
-      {
-        keywords: ["big data", "daten", "3v", "volume", "velocity", "variety"],
-        answer:
-          "Im Kapitel „Big Data“ werden typische Eigenschaften großer Datenmengen erklärt: Volume (Menge), Velocity (Geschwindigkeit) und Variety (Vielfalt der Datenquellen und -formate)."
-      },
-      {
-        keywords: ["modul", "aufbau", "vorlesung"],
-        answer:
-          "Das Modul „Künstliche Intelligenz – Methoden & Anwendungen“ sammelt alle Vorlesungsinhalte in thematisch sortierten Kapiteln auf dieser Website. Neue Inhalte kommen im Laufe des Semesters formate)."
-      },
-      {
-        keywords: ["machine learning", "ml", "lernen", "arten"],
-        answer:
-          "Machine Learning beschreibt Algorithmen, die aus Daten lernen. Es gibt drei Hauptarten: Supervised Learning (mit Labels), Unsupervised Learning (ohne Labels) und Reinforcement Learning (Lernen durch Belohnung)."
-      },
-      {
-        keywords: ["regression", "lineare regression", "vorhersage"],
-        answer:
-          "Regression wird genutzt, um numerische Werte vorherzusagen. Bei der linearen Regression wird eine Gerade berechnet, die den Zusammenhang zwischen Variablen möglichst gut beschreibt."
-      },
-      {
-        keywords: ["knn", "nearest neighbor", "nachbarn"],
-        answer:
-          "k-Nearest Neighbors ist ein Klassifikationsverfahren, bei dem ein Datenpunkt anhand seiner k nächsten Nachbarn einer Klasse zugeordnet wird."
-      }
-      ];
 
-    function findAnswer(question) {
-      const q = question.toLowerCase();
-      for (const entry of knowledgeBase) {
-        if (entry.keywords.some((k) => q.includes(k))) {
-          return entry.answer;
-        }
+  // --- EINFACHE WISSENSBASIS FÜR CHAT ---
+  const knowledgeBase = [
+    {
+      keywords: ["ki", "warum jetzt", "motivation", "boom"],
+      answer:
+        "Im Kapitel „KI – warum jetzt?“ geht es darum, warum KI gerade heute so präsent ist: mehr Rechenleistung, große Datenmengen und bessere Algorithmen wie Deep Learning."
+    },
+    {
+      keywords: ["big data", "daten", "3v", "volume", "velocity", "variety"],
+      answer:
+        "Im Kapitel „Big Data“ werden typische Eigenschaften großer Datenmengen erklärt: Volume (Menge), Velocity (Geschwindigkeit) und Variety (Vielfalt der Datenquellen und -formate)."
+    },
+    {
+      keywords: ["modul", "aufbau", "vorlesung"],
+      answer:
+        "Das Modul „Künstliche Intelligenz – Methoden & Anwendungen“ sammelt alle Vorlesungsinhalte in thematisch sortierten Kapiteln auf dieser Website. Neue Inhalte kommen im Laufe des Semesters."
+    },
+    {
+      keywords: ["machine learning", "ml", "lernen", "arten"],
+      answer:
+        "Machine Learning beschreibt Algorithmen, die aus Daten lernen. Es gibt drei Hauptarten: Supervised Learning (mit Labels), Unsupervised Learning (ohne Labels) und Reinforcement Learning (Lernen durch Belohnung)."
+    },
+    {
+      keywords: ["regression", "lineare regression", "vorhersage"],
+      answer:
+        "Regression wird genutzt, um numerische Werte vorherzusagen. Bei der linearen Regression wird eine Gerade berechnet, die den Zusammenhang zwischen Variablen möglichst gut beschreibt."
+    },
+    {
+      keywords: ["knn", "nearest neighbor", "nachbarn"],
+      answer:
+        "k-Nearest Neighbors ist ein Klassifikationsverfahren, bei dem ein Datenpunkt anhand seiner k nächsten Nachbarn einer Klasse zugeordnet wird."
+    }
+  ];
+
+  function findAnswer(question) {
+    const q = question.toLowerCase();
+    for (const entry of knowledgeBase) {
+      if (entry.keywords.some((k) => q.includes(k))) {
+        return entry.answer;
       }
-      return "Dazu habe ich in den aktuellen Inhalten noch keine konkrete Antwort. Schau dir bitte die passenden Kapitel auf dieser Seite an – oder ergänze weitere Inhalte.";
+    }
+    return "Dazu habe ich in den aktuellen Inhalten noch keine konkrete Antwort. Schau dir bitte die passenden Kapitel auf dieser Seite an.";
+  }
+
+  // --- CHAT WIDGET LOGIK ---
+  const chatToggle = document.getElementById("chatToggle");
+  const chatWidget = document.getElementById("chatWidget");
+  const chatClose = document.getElementById("chatClose");
+  const chatBody = document.getElementById("chatBody");
+  const chatForm = document.getElementById("chatForm");
+  const chatInput = document.getElementById("chatInput");
+
+  chatToggle.addEventListener("click", () => {
+    chatWidget.style.display = chatWidget.style.display === "flex" ? "none" : "flex";
+  });
+
+  chatClose.addEventListener("click", () => {
+    chatWidget.style.display = "none";
+  });
+
+  chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, "user");
+    chatInput.value = "";
+
+    const localAnswer = findAnswer(text);
+    addMessage(localAnswer, "assistant");
+  });
+
+  function addMessage(text, type) {
+    const msg = document.createElement("div");
+    msg.className = `chat-message ${type}`;
+    msg.textContent = text;
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  // --- MC-QUIZ LOGIK ---
+  const quizData = [
+    {
+      question: "Welche drei 'V' gehören zu Big Data?",
+      options: ["Volume, Velocity, Variety", "Value, Vision, Variation", "Virtual, Velocity, Variety"],
+      answer: 0
+    },
+    {
+      question: "Welche Lernarten gibt es beim Machine Learning?",
+      options: ["Supervised, Unsupervised, Reinforcement", "Linear, Logistisch, Random", "Clustering, SVM, kNN"],
+      answer: 0
+    },
+    {
+      question: "Was beschreibt Regression im Machine Learning?",
+      options: ["Vorhersage von Zielgrößen anhand Daten", "Klassifikation von Bildern", "Reduktion von Datenmengen"],
+      answer: 0
+    },
+    {
+      question: "Was macht kNN?",
+      options: ["Klassifikation anhand nächster Nachbarn", "Lineare Regression", "Deep Learning Model Training"],
+      answer: 0
+    }
+  ];
+
+  const quizOpenBtn = document.getElementById("quizOpenBtn");
+  const quizPopup = document.getElementById("quizPopup");
+  const quizCloseBtn = document.getElementById("quizCloseBtn");
+  const quizContent = document.getElementById("quizContent");
+
+  let currentQuestionIndex = 0;
+
+  quizOpenBtn.addEventListener("click", () => {
+    quizPopup.style.display = "block";
+    currentQuestionIndex = 0;
+    renderQuestion();
+  });
+
+  quizCloseBtn.addEventListener("click", () => {
+    quizPopup.style.display = "none";
+    quizContent.innerHTML = "";
+  });
+
+  function renderQuestion() {
+    quizContent.innerHTML = "";
+    if (currentQuestionIndex >= quizData.length) {
+      quizContent.innerHTML = `<p><strong>Quiz abgeschlossen!</strong></p>
+                               <p>Du hast alle Fragen beantwortet.</p>`;
+      return;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const chatToggle = document.getElementById("chatToggle");
-      const chatWidget = document.getElementById("chatWidget");
-      const chatClose = document.getElementById("chatClose");
-      const chatBody = document.getElementById("chatBody");
-      const chatForm = document.getElementById("chatForm");
-      const chatInput = document.getElementById("chatInput");
+    const q = quizData[currentQuestionIndex];
+    const qDiv = document.createElement("div");
+    qDiv.style.marginBottom = "1rem";
+    qDiv.innerHTML = `<p><strong>Frage ${currentQuestionIndex + 1}:</strong> ${q.question}</p>`;
 
-      chatToggle.addEventListener("click", () => {
-        chatWidget.style.display = chatWidget.style.display === "flex" ? "none" : "flex";
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.style.marginRight = "0.5rem";
+      btn.className = "btn btn-primary";
+
+      btn.addEventListener("click", () => {
+        if (i === q.answer) {
+          btn.style.backgroundColor = "#4ade80";
+        } else {
+          btn.style.backgroundColor = "#f87171";
+          qDiv.querySelectorAll("button")[q.answer].style.backgroundColor = "#4ade80";
+        }
+        Array.from(qDiv.querySelectorAll("button")).forEach(b => b.disabled = true);
+
+        setTimeout(() => {
+          currentQuestionIndex++;
+          renderQuestion();
+        }, 1000);
       });
 
-      chatClose.addEventListener("click", () => {
-        chatWidget.style.display = "none";
-      });
-
-      chatForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const text = chatInput.value.trim();
-        if (!text) return;
-
-        addMessage(text, "user");
-        chatInput.value = "";
-
-        const localAnswer = findAnswer(text);
-        addMessage(localAnswer, "assistant");
-
-        // HIER könnt ihr später einen API-Call einbauen (Backend mit OpenAI/Perplexity),
-        // der NUR die Inhalte eurer Seite als Kontext nutzt.
-      });
-
-      function addMessage(text, type) {
-        const msg = document.createElement("div");
-        msg.className = `chat-message ${type}`;
-        msg.textContent = text;
-        chatBody.appendChild(msg);
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }
-      // MC-Quiz Funktion
-// MC-Quiz Daten
-const quizData = [
-  {
-    question: "Welche drei 'V' gehören zu Big Data?",
-    options: ["Volume, Velocity, Variety", "Value, Vision, Variation", "Virtual, Velocity, Variety"],
-    answer: 0
-  },
-  {
-    question: "Welche Lernarten gibt es beim Machine Learning?",
-    options: ["Supervised, Unsupervised, Reinforcement", "Linear, Logistisch, Random", "Clustering, SVM, kNN"],
-    answer: 0
-  },
-  {
-    question: "Was beschreibt Regression im Machine Learning?",
-    options: ["Vorhersage von Zielgrößen anhand Daten", "Klassifikation von Bildern", "Reduktion von Datenmengen"],
-    answer: 0
-  },
-  {
-    question: "Was macht kNN?",
-    options: ["Klassifikation anhand nächster Nachbarn", "Lineare Regression", "Deep Learning Model Training"],
-    answer: 0
-  }
-];
-
-const quizOpenBtn = document.getElementById("quizOpenBtn");
-const quizPopup = document.getElementById("quizPopup");
-const quizCloseBtn = document.getElementById("quizCloseBtn");
-const quizContent = document.getElementById("quizContent");
-
-let currentQuestionIndex = 0;
-
-// Quiz öffnen
-quizOpenBtn.addEventListener("click", () => {
-  quizPopup.style.display = "block";
-  currentQuestionIndex = 0; // Quiz von vorne starten
-  renderQuestion();
-});
-
-// Quiz schließen
-quizCloseBtn.addEventListener("click", () => {
-  quizPopup.style.display = "none";
-  quizContent.innerHTML = "";
-});
-
-// Frage rendern
-function renderQuestion() {
-  quizContent.innerHTML = ""; // alten Inhalt löschen
-  if(currentQuestionIndex >= quizData.length){
-    // Quiz fertig
-    quizContent.innerHTML = `<p><strong>Quiz abgeschlossen!</strong></p>
-                             <p>Du hast alle Fragen beantwortet.</p>`;
-    return;
-  }
-
-  const q = quizData[currentQuestionIndex];
-  const qDiv = document.createElement("div");
-  qDiv.style.marginBottom = "1rem";
-  qDiv.innerHTML = `<p><strong>Frage ${currentQuestionIndex+1}:</strong> ${q.question}</p>`;
-
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement("button");
-    btn.textContent = opt;
-    btn.style.marginRight = "0.5rem";
-    btn.className = "btn btn-primary";
-    
-    btn.addEventListener("click", () => {
-      // Farben für richtig/falsch
-      if(i === q.answer){
-        btn.style.backgroundColor = "#4ade80"; // grün = richtig
-      } else {
-        btn.style.backgroundColor = "#f87171"; // rot = falsch
-        // zusätzlich richtige Antwort markieren
-        qDiv.querySelectorAll("button")[q.answer].style.backgroundColor = "#4ade80";
-      }
-      // Buttons deaktivieren
-      Array.from(qDiv.querySelectorAll("button")).forEach(b => b.disabled = true);
-
-      // Nach 1 Sekunde nächste Frage
-      setTimeout(() => {
-        currentQuestionIndex++;
-        renderQuestion();
-      }, 1000);
+      qDiv.appendChild(btn);
     });
 
-    qDiv.appendChild(btn);
-  });
-
-  quizContent.appendChild(qDiv);
-}
-  </script>
+    quizContent.appendChild(qDiv);
+  }
+});
+</script>
 </body>
 </html>
