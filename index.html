@@ -917,33 +917,36 @@ document.addEventListener("DOMContentLoaded", () => {
     qDiv.style.marginBottom = "1rem";
     qDiv.innerHTML = `<p><strong>Frage ${currentQuestionIndex + 1}:</strong> ${q.question}</p>`;
 
-    q.options.forEach((opt, i) => {
-      const btn = document.createElement("button");
-      btn.textContent = opt;
-      btn.style.marginRight = "0.5rem";
-      btn.className = "btn btn-primary";
+ // Buttons für jede Option erzeugen
+q.options.forEach((opt, i) => {
+  const btn = document.createElement("button");
+  btn.textContent = opt;
+  btn.style.marginRight = "0.5rem";
+  btn.className = "btn btn-primary";
 
-      if (i === q.answer) {
+  btn.addEventListener("click", () => {
+    if (i === q.answer) {
       btn.style.background = "#4ade80"; // richtig = grün
-      btn.style.color = "#111827"; // Textfarbe ggf. anpassen
-      } else {
+      btn.style.color = "#111827";
+    } else {
       btn.style.background = "#f87171"; // falsch = rot
-      btn.style.color = "#111827"; 
-      qDiv.querySelectorAll("button")[q.answer].style.background = "#4ade80"; // richtige Antwort grün markieren
+      btn.style.color = "#111827";
+      qDiv.querySelectorAll("button")[q.answer].style.background = "#4ade80"; 
       qDiv.querySelectorAll("button")[q.answer].style.color = "#111827";
-      }
-        Array.from(qDiv.querySelectorAll("button")).forEach(b => b.disabled = true);
+    }
 
-        setTimeout(() => {
-          currentQuestionIndex++;
-          renderQuestion();
-        }, 1000);
-      });
+    Array.from(qDiv.querySelectorAll("button")).forEach(b => b.disabled = true);
 
-      qDiv.appendChild(btn);
-    });
+    setTimeout(() => {
+      currentQuestionIndex++;
+      renderQuestion();
+    }, 1000);
+  });
 
-    quizContent.appendChild(qDiv);
+  qDiv.appendChild(btn);
+});
+
+quizContent.appendChild(qDiv);
   }
 });
 </script>
