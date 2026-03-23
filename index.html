@@ -492,14 +492,22 @@
           </p>
         </div>
         <div class="hero-visual">
-          <div class="hero-card hero-card-gradient">
-            <h2>Key Learnings</h2>
-            <ul>
-              <li>KI -> Maschine Learning -> Deep Learning</li>
-              <li>...</li>
-              <li>...</li>
-            </ul>
-          </div>
+  <div class="hero-card hero-card-gradient">
+    <h2>Klausur‑Quiz</h2>
+    <p>Teste dein Wissen mit Multiple-Choice-Fragen zu den Themen dieser Website. Klick auf den Button:</p>
+    <button class="btn btn-primary" id="quizOpenBtn">Quiz starten</button>
+  </div>
+</div>
+
+<!-- Quiz-Popup -->
+<div id="quizPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+    background:#fff; padding:1.2rem; border-radius:16px; box-shadow:0 22px 60px rgba(15,23,42,0.25); width:90%; max-width:480px; z-index:50;">
+  <h3>Multiple-Choice Quiz</h3>
+  <div id="quizContent">
+    <!-- Fragen werden hier generiert -->
+  </div>
+  <button id="quizCloseBtn" class="btn btn-primary" style="margin-top:0.7rem;">Schließen</button>
+</div>
           <div class="hero-card hero-card-outline">
             <h3>Fragen zur Vorlesung?</h3>
             <p>
@@ -854,7 +862,70 @@ document.querySelectorAll(".chapter-toggle").forEach((toggle) => {
         chatBody.appendChild(msg);
         chatBody.scrollTop = chatBody.scrollHeight;
       }
-      
+      // MC-Quiz Funktion
+const quizData = [
+  {
+    question: "Welche drei 'V' gehören zu Big Data?",
+    options: ["Volume, Velocity, Variety", "Value, Vision, Variation", "Virtual, Velocity, Variety"],
+    answer: 0
+  },
+  {
+    question: "Welche Lernarten gibt es beim Machine Learning?",
+    options: ["Supervised, Unsupervised, Reinforcement", "Linear, Logistisch, Random", "Clustering, SVM, kNN"],
+    answer: 0
+  },
+  {
+    question: "Was beschreibt Regression im Machine Learning?",
+    options: ["Vorhersage von Zielgrößen anhand Daten", "Klassifikation von Bildern", "Reduktion von Datenmengen"],
+    answer: 0
+  },
+  {
+    question: "Was macht kNN?",
+    options: ["Klassifikation anhand nächster Nachbarn", "Lineare Regression", "Deep Learning Model Training"],
+    answer: 0
+  }
+];
+
+const quizOpenBtn = document.getElementById("quizOpenBtn");
+const quizPopup = document.getElementById("quizPopup");
+const quizCloseBtn = document.getElementById("quizCloseBtn");
+const quizContent = document.getElementById("quizContent");
+
+quizOpenBtn.addEventListener("click", () => {
+  quizPopup.style.display = "block";
+  renderQuiz();
+});
+
+quizCloseBtn.addEventListener("click", () => {
+  quizPopup.style.display = "none";
+  quizContent.innerHTML = "";
+});
+
+function renderQuiz() {
+  quizContent.innerHTML = "";
+  quizData.forEach((q, idx) => {
+    const qDiv = document.createElement("div");
+    qDiv.style.marginBottom = "1rem";
+    qDiv.innerHTML = `<p><strong>Frage ${idx+1}:</strong> ${q.question}</p>`;
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.style.marginRight = "0.5rem";
+      btn.className = "btn btn-primary";
+      btn.addEventListener("click", () => {
+        if(i === q.answer){
+          btn.style.backgroundColor = "#4ade80"; // grün = richtig
+        } else {
+          btn.style.backgroundColor = "#f87171"; // rot = falsch
+        }
+        // nach der Antwort alle Buttons deaktivieren
+        Array.from(btn.parentElement.querySelectorAll("button")).forEach(b => b.disabled = true);
+      });
+      qDiv.appendChild(btn);
+    });
+    quizContent.appendChild(qDiv);
+  });
+}
     });
   </script>
 </body>
