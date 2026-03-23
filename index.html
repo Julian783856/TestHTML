@@ -271,6 +271,29 @@
       background: var(--surface-soft);
       border: 1px dashed var(--border);
     }
+    
+    .chapter-content {
+      display: none;
+    }  
+
+    .chapter.open .chapter-content {
+      display: block;
+    }
+
+    .chapter-toggle {
+      cursor: pointer;
+    }
+
+    .chapter-toggle::after {
+      content: '▼';           /* Pfeil nach unten */
+       display: inline-block;
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+.chapter.open .chapter-toggle::after {
+  transform: rotate(-180deg); /* Pfeil nach oben drehen */
+}
 
     .chapter h3 {
       margin-bottom: 0.4rem;
@@ -734,6 +757,7 @@
   </footer>
 
   <!-- Inline JavaScript -->
+    <script>
   // Accordion Funktion
 document.querySelectorAll(".chapter-toggle").forEach((toggle) => {
   toggle.addEventListener("click", () => {
@@ -741,7 +765,6 @@ document.querySelectorAll(".chapter-toggle").forEach((toggle) => {
     chapter.classList.toggle("open");
   });
 });
-  <script>
     // Simple Wissensbasis – hier kannst du wörtlich Inhalte deiner Abschnitte eintragen
     const knowledgeBase = [
       {
@@ -824,6 +847,7 @@ document.querySelectorAll(".chapter-toggle").forEach((toggle) => {
         chatBody.appendChild(msg);
         chatBody.scrollTop = chatBody.scrollHeight;
       }
+      
     });
   </script>
 </body>
