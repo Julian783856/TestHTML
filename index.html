@@ -923,13 +923,15 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.style.marginRight = "0.5rem";
       btn.className = "btn btn-primary";
 
-      btn.addEventListener("click", () => {
-        if (i === q.answer) {
-          btn.style.backgroundColor = "#4ade80";
-        } else {
-          btn.style.backgroundColor = "#f87171";
-          qDiv.querySelectorAll("button")[q.answer].style.backgroundColor = "#4ade80";
-        }
+      if (i === q.answer) {
+      btn.style.background = "#4ade80"; // richtig = grün
+      btn.style.color = "#111827"; // Textfarbe ggf. anpassen
+      } else {
+      btn.style.background = "#f87171"; // falsch = rot
+      btn.style.color = "#111827"; 
+      qDiv.querySelectorAll("button")[q.answer].style.background = "#4ade80"; // richtige Antwort grün markieren
+      qDiv.querySelectorAll("button")[q.answer].style.color = "#111827";
+      }
         Array.from(qDiv.querySelectorAll("button")).forEach(b => b.disabled = true);
 
         setTimeout(() => {
