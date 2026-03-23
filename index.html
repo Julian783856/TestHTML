@@ -559,7 +559,6 @@
             und ggf. Grafiken oder Diagramme.
           </p>
         </div>
-      </div>
 
       <!-- Kapitel: Machine Learning -->
       <div id="chapter-machine-learning" class="chapter">
@@ -691,6 +690,7 @@
 </div>
     </section>
   </main>
+  </div>
 
   <!-- KI-Assistent -->
   <button class="chat-toggle" id="chatToggle">KI Assistent</button>
@@ -736,24 +736,24 @@
       {
         keywords: ["modul", "aufbau", "vorlesung"],
         answer:
-          "Das Modul „Künstliche Intelligenz – Methoden & Anwendungen“ sammelt alle Vorlesungsinhalte in thematisch sortierten Kapiteln auf dieser Website. Neue Inhalte kommen im Laufe des Semesters hinzu."
-      }
+          "Das Modul „Künstliche Intelligenz – Methoden & Anwendungen“ sammelt alle Vorlesungsinhalte in thematisch sortierten Kapiteln auf dieser Website. Neue Inhalte kommen im Laufe des Semesters formate)."
+      },
       {
-  keywords: ["machine learning", "ml", "lernen", "arten"],
-  answer:
-    "Machine Learning beschreibt Algorithmen, die aus Daten lernen. Es gibt drei Hauptarten: Supervised Learning (mit Labels), Unsupervised Learning (ohne Labels) und Reinforcement Learning (Lernen durch Belohnung)."
-},
-{
-  keywords: ["regression", "lineare regression", "vorhersage"],
-  answer:
-    "Regression wird genutzt, um numerische Werte vorherzusagen. Bei der linearen Regression wird eine Gerade berechnet, die den Zusammenhang zwischen Variablen möglichst gut beschreibt."
-},
-{
-  keywords: ["knn", "nearest neighbor", "nachbarn"],
-  answer:
-    "k-Nearest Neighbors ist ein Klassifikationsverfahren, bei dem ein Datenpunkt anhand seiner k nächsten Nachbarn einer Klasse zugeordnet wird."
-}
-    ];
+        keywords: ["machine learning", "ml", "lernen", "arten"],
+        answer:
+          "Machine Learning beschreibt Algorithmen, die aus Daten lernen. Es gibt drei Hauptarten: Supervised Learning (mit Labels), Unsupervised Learning (ohne Labels) und Reinforcement Learning (Lernen durch Belohnung)."
+      },
+      {
+        keywords: ["regression", "lineare regression", "vorhersage"],
+        answer:
+          "Regression wird genutzt, um numerische Werte vorherzusagen. Bei der linearen Regression wird eine Gerade berechnet, die den Zusammenhang zwischen Variablen möglichst gut beschreibt."
+      },
+      {
+        keywords: ["knn", "nearest neighbor", "nachbarn"],
+        answer:
+          "k-Nearest Neighbors ist ein Klassifikationsverfahren, bei dem ein Datenpunkt anhand seiner k nächsten Nachbarn einer Klasse zugeordnet wird."
+      }
+      ];
 
     function findAnswer(question) {
       const q = question.toLowerCase();
