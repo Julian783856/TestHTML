@@ -433,6 +433,9 @@
         <a href="#top" class="nav-link active">Start</a>
         <a href="#chapter-ki-warum-jetzt" class="nav-link">KI – warum jetzt?</a>
         <a href="#chapter-big-data" class="nav-link">Big Data</a>
+        <a href="#chapter-machine-learning" class="nav-link">Machine Learning</a>
+        <a href="#chapter-regression" class="nav-link">Regression</a>
+        <a href="#chapter-knn" class="nav-link">kNN</a>
       </nav>
     </div>
   </header>
@@ -499,6 +502,24 @@
             <h3>Weitere Kapitel</h3>
             <p>Hier ist Platz für zukünftige Themen, z.B. neuronale Netze, Lernverfahren oder Anwendungen.</p>
           </article>
+
+          <article class="topic-card">
+          <h3>Machine Learning</h3>
+          <p>Grundlagen, Lernarten und zentrale Algorithmen des maschinellen Lernens.</p>
+          <a href="#chapter-machine-learning" class="card-link">Zum Kapitel →</a>
+          </article>
+
+          <article class="topic-card">
+          <h3>Regression</h3>
+          <p>Vorhersage von Zielgrößen auf Basis von Daten mittels statistischer Modelle.</p>
+          <a href="#chapter-regression" class="card-link">Zum Kapitel →</a>
+          </article>
+
+          <article class="topic-card">
+          <h3>k-Nearest Neighbors (kNN)</h3>
+          <p>Klassifikationsverfahren basierend auf den nächsten Nachbarn im Datenraum.</p>
+          <a href="#chapter-knn" class="card-link">Zum Kapitel →</a>
+          </article>
         </div>
 
         <!-- Kapitel: KI – warum jetzt? -->
@@ -539,6 +560,135 @@
           </p>
         </div>
       </div>
+
+      <!-- Kapitel: Machine Learning -->
+      <div id="chapter-machine-learning" class="chapter">
+  <h3>Kapitel: Machine Learning</h3>
+  <p>
+    Machine Learning ist ein Teilbereich der Künstlichen Intelligenz, bei dem Algorithmen aus Daten lernen,
+    um eigenständig Muster zu erkennen und Vorhersagen zu treffen.
+  </p>
+
+  <p><strong>Grundidee:</strong></p>
+  <ul>
+    <li>Algorithmen entwickeln selbstständig Lösungsstrategien</li>
+    <li>Modelle werden mit Daten trainiert statt explizit programmiert</li>
+    <li>Qualität hängt stark von Datenmenge und Datenqualität ab</li>
+  </ul>
+
+  <p><strong>Lernarten:</strong></p>
+  <ul>
+    <li><strong>Supervised Learning:</strong>
+      <ul>
+        <li>Training mit Eingabe- und Ausgabedaten</li>
+        <li>Ziel: Mapping von Input → Output</li>
+        <li>Typische Probleme: Klassifikation & Regression</li>
+      </ul>
+    </li>
+    <li><strong>Unsupervised Learning:</strong>
+      <ul>
+        <li>Keine vorgegebenen Zielwerte</li>
+        <li>Erkennung von Mustern und Strukturen</li>
+        <li>Beispiele: Clustering, Assoziationen</li>
+      </ul>
+    </li>
+    <li><strong>Reinforcement Learning:</strong>
+      <ul>
+        <li>Lernen durch Belohnung und Bestrafung</li>
+        <li>Agent interagiert mit einer Umgebung</li>
+        <li>Ziel: Maximierung der Belohnung</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong>Typische Algorithmen:</strong></p>
+  <ul>
+    <li>Lineare & logistische Regression</li>
+    <li>Decision Trees & Random Forest</li>
+    <li>Support Vector Machines (SVM)</li>
+    <li>k-Nearest Neighbors (kNN)</li>
+    <li>Neuronale Netze / Deep Learning</li>
+  </ul>
+</div>
+
+    <!-- Kapitel: Regression -->  
+ <div id="chapter-regression" class="chapter">
+  <h3>Kapitel: Regression</h3>
+  <p>
+    Regression ist ein Verfahren im Machine Learning, mit dem kontinuierliche Zielgrößen auf Basis
+    gegebener Daten vorhergesagt werden.
+  </p>
+
+  <p><strong>Grundprinzip:</strong></p>
+  <ul>
+    <li>Vorhersage einer numerischen Zielgröße (z.B. Preis, Umsatz)</li>
+    <li>Zusammenhang zwischen Variablen wird modelliert</li>
+  </ul>
+
+  <p><strong>Wichtige Arten:</strong></p>
+  <ul>
+    <li>Lineare Regression → Zusammenhang als Gerade</li>
+    <li>Multiple Regression → mehrere Einflussfaktoren</li>
+    <li>Logistische Regression → für Klassifikation</li>
+  </ul>
+
+  <p><strong>Lineare Regression:</strong></p>
+  <ul>
+    <li>Form: y = bx + a</li>
+    <li>a = Achsenabschnitt</li>
+    <li>b = Steigung</li>
+    <li>Ziel: Minimierung der Fehlerquadrate (Least Squares)</li>
+  </ul>
+
+  <p><strong>Wichtige Kennzahlen:</strong></p>
+  <ul>
+    <li>Korrelationskoeffizient (R): Stärke des Zusammenhangs (-1 bis 1)</li>
+    <li>Bestimmtheitsmaß (R²): Erklärte Varianz (0 bis 1)</li>
+  </ul>
+
+  <p><strong>Beispiel:</strong></p>
+  <ul>
+    <li>Vorhersage des Autopreises basierend auf Alter</li>
+    <li>Mit steigender Nutzungsdauer sinkt der Preis</li>
+  </ul>
+</div>     
+
+<!-- Kapitel: Knn -->
+      <div id="chapter-knn" class="chapter">
+  <h3>Kapitel: k-Nearest Neighbors (kNN)</h3>
+  <p>
+    kNN ist ein einfaches, aber effektives Klassifikationsverfahren, das neue Datenpunkte anhand ihrer
+    nächsten Nachbarn im Datensatz einordnet.
+  </p>
+
+  <p><strong>Grundidee:</strong></p>
+  <ul>
+    <li>Ein neuer Punkt wird anhand ähnlicher Daten klassifiziert</li>
+    <li>Ähnlichkeit wird über Distanz (z.B. euklidisch) gemessen</li>
+  </ul>
+
+  <p><strong>Funktionsweise:</strong></p>
+  <ul>
+    <li>Wähle k (Anzahl der Nachbarn)</li>
+    <li>Berechne Distanz zu allen Datenpunkten</li>
+    <li>Wähle die k nächsten Nachbarn</li>
+    <li>Bestimme die häufigste Klasse</li>
+  </ul>
+
+  <p><strong>Eigenschaften:</strong></p>
+  <ul>
+    <li>Einfach zu verstehen und umzusetzen</li>
+    <li>Kein explizites Training notwendig</li>
+    <li>Rechenaufwendig bei großen Datensätzen</li>
+  </ul>
+
+  <p><strong>Einsatzgebiete:</strong></p>
+  <ul>
+    <li>Klassifikation (z.B. Spam-Erkennung)</li>
+    <li>Empfehlungssysteme</li>
+    <li>Mustererkennung</li>
+  </ul>
+</div>
     </section>
   </main>
 
@@ -588,6 +738,21 @@
         answer:
           "Das Modul „Künstliche Intelligenz – Methoden & Anwendungen“ sammelt alle Vorlesungsinhalte in thematisch sortierten Kapiteln auf dieser Website. Neue Inhalte kommen im Laufe des Semesters hinzu."
       }
+      {
+  keywords: ["machine learning", "ml", "lernen", "arten"],
+  answer:
+    "Machine Learning beschreibt Algorithmen, die aus Daten lernen. Es gibt drei Hauptarten: Supervised Learning (mit Labels), Unsupervised Learning (ohne Labels) und Reinforcement Learning (Lernen durch Belohnung)."
+},
+{
+  keywords: ["regression", "lineare regression", "vorhersage"],
+  answer:
+    "Regression wird genutzt, um numerische Werte vorherzusagen. Bei der linearen Regression wird eine Gerade berechnet, die den Zusammenhang zwischen Variablen möglichst gut beschreibt."
+},
+{
+  keywords: ["knn", "nearest neighbor", "nachbarn"],
+  answer:
+    "k-Nearest Neighbors ist ein Klassifikationsverfahren, bei dem ein Datenpunkt anhand seiner k nächsten Nachbarn einer Klasse zugeordnet wird."
+}
     ];
 
     function findAnswer(question) {
